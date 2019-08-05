@@ -83,7 +83,6 @@ const realFormatSecond = (second) => {
 };
 
 export default {
-    timeFilter,
     formatPhone,
     formatBank,
     toThousands,
