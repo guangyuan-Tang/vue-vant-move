@@ -3,14 +3,12 @@
     <main>
       这里是购物车，
     </main>
-    <FooterNav/>
   </div>
 </template>
 
 
 <script>
 
-import FooterNav from "@/components/FooterNav.vue"
 
 export default {
   name: "",
@@ -18,7 +16,7 @@ export default {
   //所有静态定义引用放前面
   mixins:[],
   filters:{},
-  components: {FooterNav},
+  components: {},
 
   //组件内部数据定义
   data(){ 

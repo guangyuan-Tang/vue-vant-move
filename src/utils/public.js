@@ -1,4 +1,3 @@
-// import $http from './http'
 
 
 // 公用函数区域
@@ -22,7 +21,7 @@ export default {
 
 
   /**
-  * [取出cookie]
+  * [取出cookie(字符串形式)]
   * @param {string} name [存储名称]
   */
   getCookie(name) {
@@ -45,10 +44,10 @@ export default {
 
 
   /**
-  * [取出cookie]
+  * [取出cookie(正则形式)]
   * @param {string} name [存储名称]
   */
-  getCookie2(name) {
+  getCookieReg(name) {
     let arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
     if (arr = document.cookie.match(reg)) return (arr[2]);
     else return null;
@@ -93,10 +92,8 @@ export default {
 
     if(dataObj){ //有token的情况下
       if (new Date().getTime() / 1000 - dataObj.time > exp) {
-          
         // 存储已过期
         return {status: false, mag: "存储已过期"}
-
       } else {
         return dataObj.data
       }
@@ -143,7 +140,7 @@ export default {
 
 
   /**
-  * [存值到sessionstorage中]
+  * [存sessionstorage]
   * @param {string} key [存储的名称]
   * @param {any} value [值]
   */

@@ -3,7 +3,7 @@ import App from "@/App.vue";
 import store from "@/store";
 import router from "@/router";
 import VueI18n from "vue-i18n";
-import { Toast, Button} from "vant";
+import { Toast, Button, Icon,} from "vant";
 
 import $public from "@/utils/public.js";
 import $filters from "@/utils/filters.js";
@@ -15,7 +15,9 @@ import "@/assets/css/reset.css";
 import "@/assets/css/common.scss";
 
 Vue.config.productionTip = false;
-Vue.use(Toast).use(Button);
+Vue.use(Toast)
+  .use(Button)
+  .use(Icon);
 
 
 Vue.prototype.$public = $public;

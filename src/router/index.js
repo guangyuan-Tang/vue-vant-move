@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
+import $public from "@/utils/public.js"
 Vue.use(Router);
 
 
@@ -58,10 +59,11 @@ router.beforeEach((to, from, next) => {
     document.title = to.meta.title;
   }
 
+  // 保存当前页面 url，用于后续跳转
   if (["/login", "/register"].indexOf(to.path) === -1) {
-    // 保存当前页面 url，用于后续跳转
-    sessionStorage.setItem("backUrl", to.fullPath);
+    $public.setSession("backUrl", to.fullPath);
   }
+
 
   next();
 
@@ -80,5 +82,6 @@ router.beforeEach((to, from, next) => {
   // }
 
 });
+
 
 export default router
