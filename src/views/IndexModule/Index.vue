@@ -1,8 +1,8 @@
 <template>
-  <div class="index c-flexColumn">
+  <div class="index">
     <main>
       <van-button type="default" @click="languageChange">
-        {{$i18n.locale == "cn" ? "en" : "cn"}}
+        {{$i18n.locale == "cn" ? "英文" : "中文"}}
       </van-button>
       <p>
         vue过滤器：<br/>
@@ -20,8 +20,6 @@
 
 
 export default {
-
-
   data(){ 
     return {
       
@@ -36,5 +34,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 </style>

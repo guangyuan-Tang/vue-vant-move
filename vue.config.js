@@ -1,3 +1,6 @@
+const autoprefixer = require("autoprefixer");
+const pxtorem = require('postcss-pxtorem');
+
 module.exports = {
   // 基本路径
   // baseUrl: process.env.NODE_ENV === 'production' ? '/' : '/',
@@ -46,14 +49,25 @@ module.exports = {
     // 开启 CSS source maps?
     sourceMap: false,
     // css预设器配置项
-    loaderOptions: {},
+    loaderOptions: {
+      postcss: {
+        plugins: [
+          autoprefixer(),
+          pxtorem({
+            rootValue: 37.5,
+            propList: ['*'],
+            selectorBlackList: ['van-circle__layer']
+          })
+        ]
+      }
+    }
   },
   // webpack-dev-server 相关配置
   devServer: {
     host: '0.0.0.0',
     port: 8080,
     https: false,
-    open: true,
+    open: false,
     hotOnly: false,
     proxy: null, // 设置代理
     before: app => {},

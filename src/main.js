@@ -5,12 +5,12 @@ import router from "@/router";
 import VueI18n from "vue-i18n";
 import { Toast, Button, Icon,} from "vant";
 
+// 移动端适配
+import 'amfe-flexible';
 import $public from "@/utils/public.js";
 import $filters from "@/utils/filters.js";
 import $language from "@/language/index.js";
 
-
-import '@/assets/js/rem.js'
 import "@/assets/css/reset.css";
 import "@/assets/css/common.scss";
 

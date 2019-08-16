@@ -57,7 +57,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 #footer {
-  height: 1.466667rem /* 110/75 */;
+  height: 60px;
   width: 100%;
   border-top: 1px solid #e5e5e5;
   position: relative;
@@ -66,8 +66,8 @@ export default {
   .footer-box {
     display: flex;
     height: 100%;
-    font-size: 0.346667rem /* 26/75 */;
-    line-height: 1.333333rem /* 100/75 */;
+    font-size: 13px;
+    line-height: 100px;
     li {
       flex: 1;
       display: flex;
@@ -78,13 +78,13 @@ export default {
       justify-content: center;
       color: #999999;
       .icon {
-        font-size: 0.6rem /* 45/75 */;
+        font-size: 25px;
         line-height: 1.4em;
-        margin-top: -0.066667rem /* 5/75 */;
+        margin-top: -5px;
       }
       span {
         line-height: 1em;
-        font-size: 0.32rem /* 24/75 */;
+        font-size: 13px;
       }
     }
     .li-active {
