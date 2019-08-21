@@ -4,15 +4,20 @@
       <router-view class="appView" />
     </main>
     <FooterNav/>
+    <GlobalLoading v-if="$store.state.globalLoading > 0"/>
   </div>
 </template>
 
 <script>
 
 import FooterNav from "@/components/FooterNav.vue"
+import GlobalLoading from "@/components/GlobalLoading.vue";
 
 export default {
-  components: {FooterNav},
+  components: {
+    FooterNav,
+    GlobalLoading
+  },
 }
 </script>
 

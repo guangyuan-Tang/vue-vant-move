@@ -7,6 +7,8 @@ import { Toast, Button, Icon,} from "vant";
 
 // 移动端适配
 import 'amfe-flexible';
+import $urls from './utils/url.js';
+import $http from './utils/http.js';
 import $public from "@/utils/public.js";
 import $filters from "@/utils/filters.js";
 import $language from "@/language/index.js";
@@ -20,6 +22,8 @@ Vue.use(Toast)
   .use(Icon);
 
 
+Vue.prototype.$urls = $urls;
+Vue.prototype.$http = $http;
 Vue.prototype.$public = $public;
 
 
