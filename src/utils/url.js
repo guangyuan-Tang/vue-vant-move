@@ -1,12 +1,20 @@
-var baseUrl = process.env.NODE_ENV == 'production' ? 'http://api.line.com' : 'http://api.test.com';
+const host = process.env.VUE_APP_API_HOST;
+const payHost = process.env.VUE_APP_PAY_HOST;
+const frontEndHost = process.env.VUE_APP_FRONT_END_HOST;
 
 let urls = {
-    login: "/api/canteen/home/checkLogin",
-    register: "/api/canteen/home/register",
+  news: "/journalismApi",
+  music: "/musicBroadcasting",
 }
 
-for(let item in urls) {
-    item += baseUrl
+for (let item in urls) {
+  urls[item] = host + urls[item];
 }
+
+// 补充基础域名
+urls["host"] = host;
+urls["payHost"] = payHost;
+urls["frontEndHost"] = frontEndHost;
+
 
 export default urls

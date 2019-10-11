@@ -11,9 +11,59 @@
   }
 }
 
+// flex 水平垂直居中
+.c-flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// flex 两端居中对齐
+.c-flexBetween{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
 //超出文本隐藏
-.textFlow {
+.c-textFlow {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+//超出2行文本隐藏
+.c-textFlow-two {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+// 隐藏元素为透明，但占位
+.c-hide {
+  opacity: 0;
+}
+
+//必填
+.c-required::before{
+  content: "* ";
+  color: red;
+  font-size: 24px;
+}
+
+//可点击文字下划线
+.c-underline {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+// 渐淡过渡
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }

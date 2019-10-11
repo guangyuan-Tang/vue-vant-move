@@ -1,52 +1,36 @@
 import Vue from "vue";
 import Router from "vue-router";
+import $store from "@/store/index.js";
 import $public from "@/utils/public.js"
 Vue.use(Router);
 
 
 let router = new Router({
   mode: "history",
-  base: process.env.BASE_URL,
   routes: [
     {
       path: "/",
       name: "index",
-      component: () => import(/* webpackChunkName: "index" */ "@/views/IndexModule/Index.vue"),
-      meta: {
-        title: "首页",
-        auth: false,
-        keepAlive: false
-      }
+      meta: { title: "首页", auth: false, keepAlive: false },
+      component: () => import("@/views/IndexModule/Index.vue"),
     },
     {
       path: "/classify",
       name: "classify",
-      component: () => import(/* webpackChunkName: "classify" */ "@/views/ClassifyModule/Classify.vue"),
-      meta: {
-        title: "分类",
-        auth: false,
-        keepAlive: false
-      }
+      meta: { title: "分类", auth: false, keepAlive: false },
+      component: () => import("@/views/ClassifyModule/Classify.vue"),
     },
     {
       path: "/buyCart",
       name: "buyCart",
-      component: () => import(/* webpackChunkName: "buyCart" */ "@/views/BuyCartModule/BuyCart.vue"),
-      meta: {
-        title: "购物车",
-        auth: true,
-        keepAlive: false
-      }
+      meta: { title: "购物车", auth: true, keepAlive: false },
+      component: () => import("@/views/BuyCartModule/BuyCart.vue"),
     },
     {
       path: "/user",
       name: "user",
-      component: () => import(/* webpackChunkName: "cser" */ "@/views/UserModule/User.vue"),
-      meta: {
-        title: "个人中心",
-        auth: true,
-        keepAlive: false
-      }
+      meta: { title: "个人中心", auth: true, keepAlive: false },
+      component: () => import("@/views/UserModule/User.vue"),
     },
     
   ]
@@ -63,6 +47,10 @@ router.beforeEach((to, from, next) => {
   if (["/login", "/register"].indexOf(to.path) === -1) {
     $public.setSession("backUrl", to.fullPath);
   }
+
+  
+  //重置全局loading状态
+  $store.commit("resetLoading");
 
 
   next();
