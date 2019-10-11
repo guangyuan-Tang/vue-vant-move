@@ -1,5 +1,5 @@
 import axios from "axios";
-import $url from "./url.js";
+import $urls from "./urls.js";
 import $public from "./public.js";
 import $store from "@/store/index.js";
 
@@ -52,7 +52,7 @@ axios.interceptors.response.use(
 function request(method, url, _params) {
   //参数处理
   let params = _params || {};
-  let ajaxUrl = $url[url] || url;
+  let ajaxUrl = $urls[url] || url;
   params["_"] = Math.random();
 
   let ajaxParams = {
