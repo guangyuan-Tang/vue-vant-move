@@ -21,7 +21,7 @@ export default {
 
 
   /**
-  * [取出cookie(字符串形式)]
+  * [取出cookie(字符串裁剪)]
   * @param {string} name [存储名称]
   */
   getCookie(name) {
@@ -44,7 +44,7 @@ export default {
 
 
   /**
-  * [取出cookie(正则形式)]
+  * [取出cookie(正则匹配)]
   * @param {string} name [存储名称]
   */
   getCookieReg(name) {
@@ -68,7 +68,7 @@ export default {
 
 
   /**
-  * [localStorage本地存储(设置期限)]
+  * [存localStorage(设置期限)]
   * @param {string} key [名称]
   * @param {number} value [设置有效期(秒)]
   */
@@ -82,15 +82,15 @@ export default {
 
 
   /**
-  * [取localStorage本地存储(设置期限)]
+  * [取localStorage(设置期限)]
   * @param {string} key [存储的名称]
-  * @param {number} value [需要设置过期的时间 (秒)]
+  * @param {number} value [过期的时间 (秒)]
   */
   getLocalTime(key, exp) {
     var data = localStorage.getItem(key);
     var dataObj = JSON.parse(data);
 
-    if(dataObj){ //有token的情况下
+    if(dataObj){
       if (new Date().getTime() / 1000 - dataObj.time > exp) {
         // 存储已过期
         return {status: false, mag: "存储已过期"}
@@ -105,7 +105,7 @@ export default {
 
 
   /**
-  * [存值到localstorage中]
+  * [localstorage存值]
   * @param {string} key [存储的名称]
   * @param {any} value [值]
   */
@@ -125,12 +125,16 @@ export default {
   * @param {string} key [存储的名称]
   */
   getLocal(key) {
-    return JSON.parse(localStorage.getItem(key));
+    try {
+      return JSON.parse(localStorage.getItem(key));
+    } catch {
+      return ""
+    }
   },
 
 
   /**
-  * [删除LocalStorage中的值]
+  * [LocalStorage删除值]
   * @param {string} key [存储的名称]
   * @param {any} value [值]
   */
@@ -160,7 +164,11 @@ export default {
   * @param {string} key [取值名称]
   */
   getSession(key) {
-    return JSON.parse(sessionStorage.getItem(key));
+    try {
+      return JSON.parse(sessionStorage.getItem(key));
+    } catch {
+      return ""
+    }
   },
 
 
@@ -220,6 +228,7 @@ export default {
     return 'rgb(' + r + ',' + g + ',' + b + ')';
   },
 
+
   /**
    * [是否含有非法字符串]
    * @param  {String} str [需要过滤的字符串]
@@ -233,13 +242,13 @@ export default {
     return true;
   },
 
+
   /**
-  * 数据深拷贝
+  * [数据深拷贝]
   * @param {Object} obj
   * @param {Fn} hash
   * @returns {Object}
   */
-
   deepClone(obj, hash = new WeakMap()) {
 
     if (obj instanceof RegExp) return new RegExp(obj);
@@ -266,6 +275,42 @@ export default {
       }
     }
     return t;
+  },
+
+
+
+  /**
+  * [时间格式化]
+  * @param {time} (Date || String) [需要格式化的时间值]
+  * @param {fmt} String [格式]
+  * @returns {String}
+  * 调用：let time = formatDate(new Date(),'yyyy/MM/dd hh:mm')
+  */
+  formatDate(time, fmt) {
+    if (time === undefined || '') {
+      return
+    }
+    const date = new Date(time)
+    if (/(y+)/.test(fmt)) {
+      fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length))
+    }
+    const o = {
+      'M+': date.getMonth() + 1,
+      'd+': date.getDate(),
+      'h+': date.getHours(),
+      'm+': date.getMinutes(),
+      's+': date.getSeconds()
+    }
+    for (const k in o) {
+      if (new RegExp(`(${k})`).test(fmt)) {
+        const str = o[k] + ''
+        fmt = fmt.replace(RegExp.$1, RegExp.$1.length === 1 ? str : this.padLeftZero(str))
+      }
+    }
+    return fmt
+  },
+  padLeftZero(str) {
+    return ('00' + str).substr(str.length)
   }
 
 
